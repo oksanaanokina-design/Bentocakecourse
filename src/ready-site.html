@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Онлайн-курс по бенто-тортам от Оксаны Анокиной. Обучение объёмным рисункам и фигуркам из крема. Старт 1 февраля.">
+    <title>Бенто-торты от А до Я | Онлайн-школа Оксаны Анокиной</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --color-coffee-dark: #1a1410;
+            --color-coffee-medium: #2a1f18;
+            --color-beige: #D4B896;
+            --color-cream: #F5F0E8;
+            --color-gold: #C9A962;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: ui-sans-serif, system-ui, sans-serif;
+            background: var(--color-cream);
+            color: var(--color-coffee-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .bg-coffee-dark { background-color: var(--color-coffee-dark); }
+        .bg-coffee-medium { background-color: var(--color-coffee-medium); }
+        .bg-beige { background-color: var(--color-beige); }
+        .bg-cream { background-color: var(--color-cream); }
+        .bg-gold { background-color: var(--color-gold); }
+        
+        .text-coffee-dark { color: var(--color-coffee-dark); }
+        .text-coffee-medium { color: var(--color-coffee-medium); }
+        .text-beige { color: var(--color-beige); }
+        .text-gold { color: var(--color-gold); }
+        
+        .border-beige { border-color: var(--color-beige); }
+        .border-gold { border-color: var(--color-gold); }
+        
+        .gradient-gold-beige {
+            background: linear-gradient(to right, var(--color-gold), var(--color-beige));
+        }
+        
+        .gradient-beige-gold {
+            background: linear-gradient(to right, var(--color-beige), var(--color-gold));
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 9999;
+            overflow-y: auto;
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+        
+        .spinner {
+            border: 2px solid rgba(0,0,0,0.1);
+            border-top-color: var(--color-coffee-dark);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-coffee-dark bg-opacity-95 backdrop-blur-sm border-b border-opacity-20 border-beige">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 gradient-beige-gold rounded-full flex items-center justify-center text-2xl">
+                        🧁
+                    </div>
+                    <div>
+                        <div class="text-beige font-semibold text-sm tracking-wide">Онлайн-школа</div>
+                        <div class="text-white text-lg font-bold">Оксаны Анокиной</div>
+                    </div>
+                </div>
+                
+                <a href="https://instagram.com/oksana_anokina" target="_blank" rel="noopener noreferrer"
+                   class="flex items-center gap-2 gradient-gold-beige text-coffee-dark px-6 py-2.5 rounded-full hover-scale transition-all font-semibold">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    <span class="hidden sm:inline">63K подписчиков</span>
+                    <span class="sm:hidden">63K</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-28 pb-20 px-4 overflow-hidden bg-gradient-to-b from-coffee-dark to-coffee-medium">
+        <div class="absolute top-20 right-10 w-64 h-64 bg-gold opacity-10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 left-10 w-96 h-96 bg-beige opacity-10 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10 animate-fade-in">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="inline-block mb-6 px-6 py-2 bg-gold bg-opacity-20 backdrop-blur-sm rounded-full border border-gold border-opacity-30">
+                    <span class="text-beige">⭐ Старт 1 февраля 2026</span>
+                </div>
+                
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                    Бенто-торты от А до Я:<br>
+                    <span class="bg-gradient-to-r from-beige to-gold bg-clip-text text-transparent">
+                        объёмные рисунки и фигурки из крема
+                    </span>
+                </h1>
+                
+                <p class="text-beige text-opacity-90 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+                    Создавайте впечатляющие бенто-торты с реалистичными фигурками. 
+                    Обучение в удобном формате Telegram-канала с пожизненным доступом.
+                </p>
+                
+                <a href="#pricing" class="inline-block gradient-gold-beige text-coffee-dark px-10 py-4 rounded-full text-lg font-bold hover-scale transition-all shadow-lg">
+                    Выбрать тариф
+                </a>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-3xl mx-auto">
+                    <div class="bg-white bg-opacity-10 backdrop-blur-md border border-white border-opacity-20 rounded-2xl p-6 text-center">
+                        <div class="w-14 h-14 mx-auto mb-3 bg-gradient-to-br from-gold to-white rounded-full flex items-center justify-center text-coffee-dark text-2xl">
+                            📅
+                        </div>
+                        <p class="text-white font-semibold">Старт 1 февраля</p>
+                    </div>
+                    <div class="bg-white bg-opacity-10 backdrop-blur-md border border-white border-opacity-20 rounded-2xl p-6 text-center">
+                        <div class="w-14 h-14 mx-auto mb-3 bg-gradient-to-br from-beige to-white rounded-full flex items-center justify-center text-coffee-dark text-2xl">
+                            💬
+                        </div>
+                        <p class="text-white font-semibold">Telegram-канал</p>
+                    </div>
+                    <div class="bg-white bg-opacity-10 backdrop-blur-md border border-white border-opacity-20 rounded-2xl p-6 text-center">
+                        <div class="w-14 h-14 mx-auto mb-3 bg-gradient-to-br from-gold to-white rounded-full flex items-center justify-center text-coffee-dark text-2xl">
+                            📚
+                        </div>
+                        <p class="text-white font-semibold">11 уроков</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 px-4 bg-cream">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-coffee-dark mb-4">
+                    Превратите хобби в <span class="text-gold">прибыльный навык</span>
+                </h2>
+                <p class="text-coffee-medium text-lg md:text-xl max-w-2xl mx-auto">
+                    Научитесь создавать трендовые бенто-торты, которые покоряют Instagram и приносят стабильный доход
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all border border-beige border-opacity-20">
+                    <div class="w-16 h-16 gradient-beige-gold rounded-2xl flex items-center justify-center mb-6 text-white text-3xl">
+                        ✨
+                    </div>
+                    <h3 class="text-2xl font-bold text-coffee-dark mb-3">Современные техники</h3>
+                    <p class="text-coffee-medium text-lg">Актуальные тренды 2025-2026 года в оформлении и дизайне бенто-тортов</p>
+                </div>
+                
+                <div class="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all border border-beige border-opacity-20">
+                    <div class="w-16 h-16 gradient-beige-gold rounded-2xl flex items-center justify-center mb-6 text-white text-3xl">
+                        🏆
+                    </div>
+                    <h3 class="text-2xl font-bold text-coffee-dark mb-3">Профессиональный подход</h3>
+                    <p class="text-coffee-medium text-lg">63 000 подписчиков доверяют моему опыту и качеству обучения</p>
+                </div>
+                
+                <div class="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all border border-beige border-opacity-20">
+                    <div class="w-16 h-16 gradient-beige-gold rounded-2xl flex items-center justify-center mb-6 text-white text-3xl">
+                        💝
+                    </div>
+                    <h3 class="text-2xl font-bold text-coffee-dark mb-3">Поддержка 24/7</h3>
+                    <p class="text-coffee-medium text-lg">Закрытый Telegram-канал с постоянной поддержкой и ответами на вопросы</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lessons Section -->
+    <section class="py-20 px-4 bg-gradient-to-b from-coffee-medium to-coffee-dark">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">Программа курса</h2>
+                <p class="text-beige text-opacity-90 text-lg md:text-xl max-w-2xl mx-auto">
+                    9 основных уроков + 2 бонусных урока только для выпускников
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white bg-opacity-5 backdrop-blur-md border border-white border-opacity-10 rounded-3xl p-8">
+                    <h3 class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                        <span class="text-3xl">📚</span>
+                        Основная программа
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-beige">Основы работы с кремом: текстуры и консистенции</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-beige">Базовые техники создания объёмных элементов</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-beige">Рисование животных из крема: мишки, зайчики, котики</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-beige">Создание цветочных композиций</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-beige">Техника градиента и омбре</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-beige">Персонажи из мультфильмов и аниме</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-beige">Реалистичные фрукты и ягоды</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-beige">Надписи и леттеринг на бенто-тортах</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-beige">Упаковка и презентация готового изделия</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-gold from-opacity-20 to-beige to-opacity-20 backdrop-blur-md border border-gold border-opacity-30 rounded-3xl p-8">
+                    <h3 class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                        <span class="text-3xl">🎁</span>
+                        Бонусные уроки для выпускников
+                    </h3>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-white">Секреты ценообразования и продвижения в Instagram</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-white">Как получать заказы на 50 000+ рублей в месяц</span>
+                        </div>
+                    </div>
+                    <div class="bg-white bg-opacity-10 rounded-2xl p-6 border border-white border-opacity-20">
+                        <p class="text-beige text-sm">
+                            💡 <strong class="text-white">Пожизненный доступ</strong> ко всем материалам курса и обновлениям
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 px-4 bg-cream">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-coffee-dark mb-4">Выберите свой тариф</h2>
+                <p class="text-coffee-medium text-lg md:text-xl max-w-2xl mx-auto">
+                    Инвестиция в навык, который окупится уже после первых заказов
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Standard Plan -->
+                <div class="relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all border border-beige border-opacity-20">
+                    <h3 class="text-3xl font-bold text-coffee-dark mb-2">Standard</h3>
+                    <div class="mb-6">
+                        <span class="text-5xl font-bold text-coffee-dark">10 500</span>
+                        <span class="text-xl text-coffee-medium"> ₽</span>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-coffee-medium">9 основных видео-уроков</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-coffee-medium">2 бонусных урока для выпускников</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-coffee-medium">Доступ к закрытому Telegram-каналу</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-coffee-medium">Пожизненный доступ к материалам</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-coffee-medium">Обратная связь в общем чате</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-coffee-medium">Сертификат о прохождении курса</span>
+                        </li>
+                    </ul>
+                    
+                    <button onclick="openModal('Standard')" class="w-full bg-coffee-dark text-white py-4 rounded-full transition-all hover:bg-coffee-medium font-bold">
+                        Записаться на курс
+                    </button>
+                </div>
+                
+                <!-- Premium Plan -->
+                <div class="relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all border-2 border-gold md:scale-105">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 gradient-gold-beige text-coffee-dark px-6 py-2 rounded-full flex items-center gap-2 font-bold">
+                        <span>⭐</span>
+                        <span>Популярный</span>
+                    </div>
+                    
+                    <h3 class="text-3xl font-bold text-coffee-dark mb-2">Premium</h3>
+                    <div class="mb-6">
+                        <span class="text-5xl font-bold text-coffee-dark">14 500</span>
+                        <span class="text-xl text-coffee-medium"> ₽</span>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-coffee-medium">Всё из тарифа Standard</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-coffee-medium">Личная консультация 30 минут</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-coffee-medium">Разбор вашего аккаунта в соцсетях</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-coffee-medium">Индивидуальные рекомендации</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-coffee-medium">Приоритетная поддержка</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-gold text-xl">✓</span>
+                            <span class="text-coffee-medium">Доступ к эксклюзивным материалам</span>
+                        </li>
+                    </ul>
+                    
+                    <button onclick="openModal('Premium')" class="w-full gradient-gold-beige text-coffee-dark py-4 rounded-full transition-all hover:shadow-lg font-bold">
+                        Записаться на курс
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-coffee-dark text-white py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 gradient-beige-gold rounded-full flex items-center justify-center text-2xl">
+                            🧁
+                        </div>
+                        <div>
+                            <div class="text-beige text-sm">Онлайн-школа</div>
+                            <div class="text-white font-bold">Оксаны Анокиной</div>
+                        </div>
+                    </div>
+                    <p class="text-beige opacity-70 text-sm">
+                        Обучаем создавать впечатляющие бенто-торты с 2020 года
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4">Навигация</h4>
+                    <ul class="space-y-2 text-beige opacity-70 text-sm">
+                        <li><a href="#pricing" class="hover:text-gold transition-colors">Тарифы</a></li>
+                        <li><a href="ready-privacy.html" class="hover:text-gold transition-colors">Политика конфиденциальности</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4">Контакты</h4>
+                    <div class="space-y-3">
+                        <a href="https://instagram.com/oksana_anokina" target="_blank" rel="noopener noreferrer"
+                           class="flex items-center gap-2 text-beige opacity-70 hover:text-gold transition-colors text-sm">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                            @oksana_anokina
+                        </a>
+                        <a href="mailto:info@example.com" class="flex items-center gap-2 text-beige opacity-70 hover:text-gold transition-colors text-sm">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            Написать нам
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-white border-opacity-10 pt-8 text-center text-beige opacity-50 text-sm">
+                <p>© 2026 Онлайн-школа Оксаны Анокиной. Все права защищены.</p>
+                <p class="mt-2">Сайт не предназначен для сбора PII или конфиденциальных данных</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Enrollment Modal -->
+    <div id="enrollModal" class="modal">
+        <div class="bg-white rounded-3xl p-8 max-w-2xl w-full m-4 relative">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-2xl font-bold text-coffee-dark">Запись на курс — <span id="modalPlan"></span></h3>
+                <button onclick="closeModal()" class="w-10 h-10 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors">
+                    <svg class="w-6 h-6 text-coffee-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <form id="enrollForm" class="space-y-6">
+                <div>
+                    <label class="block text-coffee-dark mb-2 font-semibold">
+                        Имя и фамилия <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" name="name" required
+                           class="w-full px-4 py-3 border border-beige rounded-xl focus:outline-none focus:ring-2 focus:ring-gold text-coffee-dark"
+                           placeholder="Анна Иванова">
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-coffee-dark mb-2 font-semibold">
+                            Email <span class="text-red-500">*</span>
+                        </label>
+                        <input type="email" name="email" required
+                               class="w-full px-4 py-3 border border-beige rounded-xl focus:outline-none focus:ring-2 focus:ring-gold text-coffee-dark"
+                               placeholder="email@example.com">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-coffee-dark mb-2 font-semibold">
+                            Телефон <span class="text-red-500">*</span>
+                        </label>
+                        <input type="tel" name="phone" required
+                               class="w-full px-4 py-3 border border-beige rounded-xl focus:outline-none focus:ring-2 focus:ring-gold text-coffee-dark"
+                               placeholder="+7 (999) 123-45-67">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-coffee-dark mb-2 font-semibold">
+                        Telegram username <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" name="telegram" required
+                           class="w-full px-4 py-3 border border-beige rounded-xl focus:outline-none focus:ring-2 focus:ring-gold text-coffee-dark"
+                           placeholder="@username">
+                </div>
+                
+                <div id="instagramField" style="display: none;">
+                    <label class="block text-coffee-dark mb-2 font-semibold">
+                        Ссылка на Instagram (для разбора)
+                    </label>
+                    <input type="text" name="instagram"
+                           class="w-full px-4 py-3 border border-beige rounded-xl focus:outline-none focus:ring-2 focus:ring-gold text-coffee-dark"
+                           placeholder="instagram.com/username">
+                </div>
+                
+                <div class="bg-beige bg-opacity-10 rounded-xl p-4">
+                    <label class="flex items-start gap-3 cursor-pointer">
+                        <input type="checkbox" name="consent" required
+                               class="mt-1 w-5 h-5 text-gold border-beige rounded focus:ring-gold">
+                        <span class="text-sm text-coffee-medium">
+                            Я даю согласие на обработку персональных данных в соответствии с
+                            <a href="ready-privacy.html" target="_blank" class="text-gold hover:underline">
+                                политикой конфиденциальности
+                            </a>
+                            <span class="text-red-500">*</span>
+                        </span>
+                    </label>
+                </div>
+                
+                <button type="submit" id="submitBtn"
+                        class="w-full gradient-gold-beige text-coffee-dark py-4 rounded-full hover:shadow-lg transition-all flex items-center justify-center gap-2 font-bold">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                    </svg>
+                    Отправить заявку
+                </button>
+                
+                <p class="text-sm text-coffee-medium text-center">
+                    После отправки заявки мы свяжемся с вами для подтверждения оплаты и добавления в Telegram-канал
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="bg-white rounded-3xl p-12 max-w-md text-center">
+            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span class="text-4xl">✅</span>
+            </div>
+            <h3 class="text-3xl font-bold text-coffee-dark mb-4">Заявка отправлена!</h3>
+            <p class="text-coffee-medium text-lg">
+                Мы свяжемся с вами в ближайшее время для подтверждения записи на курс
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let selectedPlan = '';
+        
+        function openModal(plan) {
+            selectedPlan = plan;
+            document.getElementById('modalPlan').textContent = plan;
+            document.getElementById('enrollModal').classList.add('active');
+            document.getElementById('instagramField').style.display = plan === 'Premium' ? 'block' : 'none';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('enrollModal').classList.remove('active');
+            document.getElementById('successModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            document.getElementById('enrollForm').reset();
+        }
+        
+        document.getElementById('enrollModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+        
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+        
+        document.getElementById('enrollForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            if (!data.consent) {
+                alert('Пожалуйста, дайте согласие на обработку персональных данных');
+                return;
+            }
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<div class="spinner"></div> Отправка...';
+            
+            // Имитация отправки формы
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            console.log('Form data:', { ...data, plan: selectedPlan });
+            
+            document.getElementById('enrollModal').classList.remove('active');
+            document.getElementById('successModal').classList.add('active');
+            
+            setTimeout(() => {
+                closeModal();
+            }, 3000);
+            
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg> Отправить заявку';
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
